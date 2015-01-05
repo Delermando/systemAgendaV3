@@ -26,8 +26,9 @@ return array(
     'FromEmailTest' => $baseDir . '/test/model/core/FromEmailTest.php',
     'HTMLPagesTest' => $baseDir . '/test/model/htmlManager/HTMLPagesTest.php',
     'HTMLStructureTest' => $baseDir . '/test/model/htmlManager/HTMLStructureTest.php',
+    'MessageTest' => $baseDir . '/test/model/core/MessageTest.php',
+    'RelationCardTest' => $baseDir . '/test/model/core/RelationCardTest.php',
     'RouterTest' => $baseDir . '/test/model/router/RouterTest.php',
+    'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'ToEmailTest' => $baseDir . '/test/model/core/ToEmailTest.php',
-    'ToMessage' => $baseDir . '/test/model/core/MessageTest.php',
-    'ToRelationCard' => $baseDir . '/test/model/core/RelationCardTest.php',
 );
