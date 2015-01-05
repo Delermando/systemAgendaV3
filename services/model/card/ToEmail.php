@@ -1,10 +1,10 @@
-<?php namespace Cartao\model\core;
+<?php namespace Cartao\model\card;
 
 class ToEmail{
      private $DB;
      
      public function __construct() {
-        $this->DB = new \Cartao\model\db\DBConnection();
+       $this->DB = new \Cartao\db\DBConnection();
     }
     
     public function save($name, $email){
@@ -19,8 +19,8 @@ class ToEmail{
         $delete = "DELETE FROM psnToEmail WHERE agnID= :id";
         $stm = $this->DB->prepare($delete);
         $stm->bindParam(":id", $id, \PDO::PARAM_INT);
-        $this->DB->runQuery($stm);       
-        return $this->testDelete($stm->rowCount());
+        $rowsDeleted = $this->DB->runDelete($stm);       
+        return $this->testDelete($rowsDeleted);
     }
     
     public function update($column, $value, $id){
@@ -28,16 +28,15 @@ class ToEmail{
         $stm = $this->DB->prepare($sql);
         $stm->bindParam(":value", $value, \PDO::PARAM_STR);
         $stm->bindParam(":id", $id, \PDO::PARAM_INT);
-        return $this->DB->runQuery($stm);
+        return $this->DB->runUpdate($stm);
     }
     
     private function insert($name, $email) {
-         $sql = "INSERT INTO psnToEmail (agnEmail,agnName) VALUES (:email, :name)";
+        $sql = "INSERT INTO psnToEmail (agnEmail,agnName) VALUES (:email, :name)";
         $stm = $this->DB->prepare($sql);
         $stm->bindParam(":name", $name, \PDO::PARAM_STR);
         $stm->bindParam(":email", $email, \PDO::PARAM_STR);
-        $this->DB->runQuery($stm);
-        return intval($this->DB->lastIdOnInsert());
+        return $this->DB->runInsert($stm);
     }
     
     private function testDelete($rowDelete) {

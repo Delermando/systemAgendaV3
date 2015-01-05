@@ -1,4 +1,4 @@
-<?php namespace Cartao\model\db;
+<?php namespace Cartao\db;
 
 class DBConnection {
     private $conn;
@@ -23,15 +23,24 @@ class DBConnection {
         return $this->Connect()->prepare($sql);
     }
 
-    public function runQuery($stm) {
-        return $stm->execute(); 
+    public function runInsert($stm) {
+        $stm->execute();
+        return intval($this->conn->lastInsertId());
+    }
+    
+    public function runUpdate($stm) {
+        $stm->execute();
+        return $stm->rowCount();
+    }
+    
+    public function runDelete($stm) {
+        $stm->execute();
+        return $stm->rowCount();
     }
 
-    public function runSelect($stm) {//SELECT
+    public function runSelect($stm) {
         $stm->execute();
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
     }
-    public function lastIdOnInsert() {
-        return $this->conn->lastInsertId();
-    }
+    
 }

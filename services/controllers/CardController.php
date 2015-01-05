@@ -9,7 +9,6 @@ class CardController{
     public function __construct($DataMap) {
         $this->DataMap = $DataMap;
         $this->CardModel = New \Cartao\model\core\CardModel();
-        $this->HTMLPage  = New \Cartao\model\htmlManager\HTMLPages($DataMap);
     }
        
     public function home() {

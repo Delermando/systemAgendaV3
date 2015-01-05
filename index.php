@@ -9,41 +9,22 @@ ini_set("log_errors", 1);
 
  
 require_once __DIR__ . '/vendor/autoload.php';
- 
-$app = new Silex\Application();
-$app['debug'] = true;
-$blogPosts = array(
-    1 => array(
-        'date' => '2014-10-10',
-        'author' => 'Delermando',
-        'title' => 'Usando Silex 01',
-        'body' => 'Post 1'
-    ),
-    2 => array(
-        'date' => '2014-11-10',
-        'author' => 'Salmo',
-        'title' => 'Usando Silex 02',
-        'body' => 'Post 2'
-    ),
-    'd' => array(
-        'date' => '2014-11-10',
-        'author' => 'teste filtro',
-        'title' => 'Usando Silex 03',
-        'body' => 'Post 3'
-    ),
-);
- 
-$app->get('/', function () use ($app){
-    $return  = "Bem vindo, começamos a usar o Silex";
-    return $app->json($return);
-});
- 
-$app->get('/blog', function () use ($blogPosts, $app) {
-    $return = '';
-    foreach ($blogPosts as $post) {
-        $return .= $post['title'];
-        $return .= '<br />';
-    }
-    return $app->json($return);
-});
-$app->run();
+require_once ('services/registerGlobals/globals.php');
+
+
+$CardModel = New \Cartao\model\card\CardModel();
+//$CardModel->save($arrayToSave);
+//$CardModel->update($identifier, $value)
+//$CardModel->delete($IdSchedule);
+//var_dump($CardModel->select());
+// 
+//$app = new Silex\Application();
+//$app['debug'] = true;
+//
+//$app->get('/v1/cards/list', function () use ($app, $CardModel){
+//    return $app->json($CardModel->select());
+//});
+//
+//$app->run();
+
+//echo 'passou';

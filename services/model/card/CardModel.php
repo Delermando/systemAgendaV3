@@ -1,4 +1,4 @@
-<?php namespace Cartao\model\core;
+<?php namespace Cartao\model\card;
 
 
 class CardModel extends \Cartao\filters\Filters{

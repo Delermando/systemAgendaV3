@@ -7,9 +7,9 @@
             "Cartao": ""
         },
         "classmap": [
-            "model",
-            "controllers",
-            "test"
+            "services/model",
+            "services/controllers",
+            "services/test"
         ]
     }
 }

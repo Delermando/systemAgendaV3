@@ -1,10 +1,10 @@
-<?php namespace Cartao\model\core;
+<?php namespace Cartao\model\card;
 
 class RelationCard{
     private $DB;
 
     public function __construct() {
-        $this->DB = new \Cartao\model\db\DBConnection();
+        $this->DB = new \Cartao\db\DBConnection();
     }
     
     public function save($idFromEmail, $idToEmail, $idMessage, $dataEnvio){
@@ -15,8 +15,7 @@ class RelationCard{
         $delete = "DELETE FROM psnScheduleSend WHERE agnID= :id";
         $stm = $this->DB->prepare($delete);
         $stm->bindParam(":id", $id, \PDO::PARAM_INT);
-        $this->DB->runQuery($stm);       
-        return $this->testDelete($stm->rowCount());
+        return $this->DB->runDelete($stm);       
     }
     
     public function selecCountIDsInFromEmail($id) {
@@ -50,8 +49,7 @@ class RelationCard{
         $stm->bindParam(":idToEmail", $idToEmail, \PDO::PARAM_INT);
         $stm->bindParam(":idMessage", $idMessage, \PDO::PARAM_INT);
         $stm->bindParam(":dataEnvio", $dataEnvio, \PDO::PARAM_STR);
-        $this->DB->runQuery($stm);
-        return intval($this->DB->lastIdOnInsert());
+        return $this->DB->runInsert($stm);
     }
     
     public function selectAllRegisters() {
