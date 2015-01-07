@@ -1,4 +1,4 @@
-<?php namespace Cartao\registerGlobals;
+<?php namespace Cartao\services\registerGlobals;
 
 class DataMap {
 

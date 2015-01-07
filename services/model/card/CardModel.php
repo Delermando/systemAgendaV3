@@ -1,19 +1,19 @@
-<?php namespace Cartao\model\card;
+<?php namespace Cartao\services\model\card;
 
 
-class CardModel extends \Cartao\filters\Filters{
+class CardModel{
     private $FromEmail = 'FromEmail';
     private $ToEmail = 'ToEmail';
     private $Message = 'Message';
     private $RelationCard = 'RelationCard';
     
     public function save($arrayToSave) {
-        $return = $this->setArrayToSave($arrayToSave);
-        $sizeArrayToSave = sizeof($return);
-        if($sizeArrayToSave == 6){
+//        $return = $this->setArrayToSave($arrayToSave);
+//        $sizeArrayToSave = sizeof($return);
+//        if($sizeArrayToSave == 6){
              return $this->saveInAllEntities($arrayToSave);
-        }
-        return $return;
+//        }
+//        return $return;
     }
     
     public function delete($IdSchedule) {
@@ -25,9 +25,9 @@ class CardModel extends \Cartao\filters\Filters{
         return false;
     }
     
-    public function update($identifier, $value) {
-        $arrayIDColumnAndTable = $this->getIdColumAndTableFromIdetifier($identifier);
-        return $this->chooseInstanceForUpdate($arrayIDColumnAndTable, $value);
+    public function update($arrayDataForUpdate) {
+//        $arrayIDColumnAndTable = $this->getIdColumAndTableFromIdetifier($identifier);
+        return $this->chooseInstanceForUpdate($arrayDataForUpdate);
     }
     
     public function select() {
@@ -114,16 +114,16 @@ class CardModel extends \Cartao\filters\Filters{
         }
     }
     
-    private function chooseInstanceForUpdate($arrayDataForUpdate, $value) {
+    private function chooseInstanceForUpdate($arrayDataForUpdate) {
        switch ($arrayDataForUpdate['table']){
            case "psnFromEmail":
-               return $this->instanceUpdateFromEmail($arrayDataForUpdate['column'], $value, $arrayDataForUpdate['id']);
+               return $this->instanceUpdateFromEmail($arrayDataForUpdate['column'], $arrayDataForUpdate['value'], $arrayDataForUpdate['id']);
                break;
            case "psnToEmail":
-               return $this->instanceUpdateToEmail($arrayDataForUpdate['column'], $value, $arrayDataForUpdate['id']);
+               return $this->instanceUpdateToEmail($arrayDataForUpdate['column'], $arrayDataForUpdate['value'], $arrayDataForUpdate['id']);
                break;
            case "psnMessageToSend":
-              return $this->instanceUpdateMessage($arrayDataForUpdate['column'], $value, $arrayDataForUpdate['id']);
+              return $this->instanceUpdateMessage($arrayDataForUpdate['column'], $arrayDataForUpdate['value'], $arrayDataForUpdate['id']);
                break;
            default :
                return false;
@@ -131,7 +131,7 @@ class CardModel extends \Cartao\filters\Filters{
     }
     
     private function chooseInstance($className) {
-        $mountClass = "\Cartao\\model\\core\\".$className;
+        $mountClass = "\Cartao\\services\\model\\card\\".$className;
         return new $mountClass();
     }
 

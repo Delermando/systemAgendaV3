@@ -1,10 +1,10 @@
-<?php namespace Cartao\model\card;
+<?php namespace Cartao\services\model\card;
 
 class RelationCard{
     private $DB;
 
     public function __construct() {
-        $this->DB = new \Cartao\db\DBConnection();
+       $this->DB = new \Cartao\services\db\DBConnection();
     }
     
     public function save($idFromEmail, $idToEmail, $idMessage, $dataEnvio){

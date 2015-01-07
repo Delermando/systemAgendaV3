@@ -1,15 +1,15 @@
 {
    "require": {
-	"silex/silex": "~1.1"
+	"silex/silex": "~1.1",
+        "symfony/validator": "~2.3"
    },
    "autoload": {
         "psr-0": {
             "Cartao": ""
         },
         "classmap": [
-            "services/model",
-            "services/controllers",
-            "services/test"
+            "services",
+            "test"
         ]
     }
 }

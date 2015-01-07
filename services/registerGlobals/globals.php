@@ -1,5 +1,5 @@
 <?php 
-$DataMap = new Cartao\registerGlobals\DataMap();
+$DataMap = new Cartao\services\registerGlobals\DataMap();
 
 define('DB_HOST', '192.168.0.198');
 define('DB_NAME', 'agenda');

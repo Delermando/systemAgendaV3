@@ -1,4 +1,4 @@
-<?php namespace Cartao\db;
+<?php namespace Cartao\services\db;
 
 class DBConnection {
     private $conn;
