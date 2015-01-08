@@ -3,13 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services/model/card/CardModel.php</file>
+            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/index2.php</file>
+            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services/routes/cardRoutes.php</file>
+            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services2/IndexController.php</file>
             <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/index.php</file>
-            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services/model/card/Message.php</file>
-            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/composer.json</file>
-            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services/controllers/CardController.php</file>
-            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services/registerGlobals/globals.php</file>
-            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/-index.php</file>
+            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services/ControllerManagement.php</file>
+            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services/routesController/CardRoutesController.php</file>
+            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/services2/routes.php</file>
+            <file>file:/home/dsantos/devel/personare/portal/projetos/systemAgendaV3/vendor/pimple/pimple/lib/Pimple.php</file>
         </group>
     </open-files>
 </project-private>

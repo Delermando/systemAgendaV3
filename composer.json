@@ -9,6 +9,7 @@
         },
         "classmap": [
             "services",
+            "services2",
             "test"
         ]
     }
