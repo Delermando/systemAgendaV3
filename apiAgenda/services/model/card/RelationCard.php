@@ -64,10 +64,10 @@ class RelationCard{
     }
 
     
-    private function testDelete($rowDelete) {
-        if($rowDelete == 1){
-            return true;
-        }
-        return false;
-    }
+//    private function countRegistersToDelete($rowDelete) {
+//        if(count($rowDelete) >= 1){
+//            return $rowDelete;
+//        }
+//        return arr;
+//    }
 }

@@ -15,8 +15,7 @@ class Message{
         $delete = "DELETE FROM psnMessageToSend WHERE agnID= :id";
         $stm = $this->DB->prepare($delete);
         $stm->bindParam(":id", $id, \PDO::PARAM_INT);
-        $rowsDeleted = $this->DB->runDelete($stm);       
-        return $this->testDelete($rowsDeleted);
+        return $this->DB->runDelete($stm);       
     }
     
     public function update($column, $value, $id){
@@ -24,7 +23,9 @@ class Message{
         $stm = $this->DB->prepare($sql);
         $stm->bindParam(":value", $value, \PDO::PARAM_STR);
         $stm->bindParam(":id", $id, \PDO::PARAM_INT);
-        return $this->DB->runUpdate($stm);
+        $return = $this->DB->runUpdate($stm);
+        var_dump($return);
+        return $return;
     }
     
     private function insert($message) {
@@ -34,10 +35,4 @@ class Message{
         return $this->DB->runInsert($stm);
     }
     
-    private function testDelete($rowDelete) {
-        if($rowDelete == 1){
-            return true;
-        }
-        return false;
-    }
 }

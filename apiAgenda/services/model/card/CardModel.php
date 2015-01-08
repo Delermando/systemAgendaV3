@@ -8,12 +8,7 @@ class CardModel{
     private $RelationCard = 'RelationCard';
     
     public function save($arrayToSave) {
-//        $return = $this->setArrayToSave($arrayToSave);
-//        $sizeArrayToSave = sizeof($return);
-//        if($sizeArrayToSave == 6){
-             return $this->saveInAllEntities($arrayToSave);
-//        }
-//        return $return;
+        return $this->saveInAllEntities($arrayToSave);
     }
     
     public function delete($IdSchedule) {
@@ -22,11 +17,9 @@ class CardModel{
             $arrayListID[0]['IDSchedule'] = $IdSchedule;
             return $this->deleteInAllEntities($arrayListID[0]);
         }
-        return false;
     }
     
     public function update($arrayDataForUpdate) {
-//        $arrayIDColumnAndTable = $this->getIdColumAndTableFromIdetifier($identifier);
         return $this->chooseInstanceForUpdate($arrayDataForUpdate);
     }
     
@@ -42,7 +35,7 @@ class CardModel{
     }
 
     private function deleteInAllEntities($arrayDelete) {
-        $return = $this->instanceDeleteRelationCard($arrayDelete['IDSchedule']);
+        $return  = array('numbOfLinesAffected' => $this->instanceDeleteRelationCard($arrayDelete['IDSchedule']));
         $this->deleteFromEmailIfIsUnic($arrayDelete['IDFromEmail']);
         $this->deleteToEmailIfIsUnic($arrayDelete['IDToEmail']);
         $this->instanceDeleteMessage($arrayDelete['IDMessage']);

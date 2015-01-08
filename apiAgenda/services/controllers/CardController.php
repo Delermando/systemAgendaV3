@@ -12,11 +12,11 @@ class CardController {
     }
     
     public function save($toSave){
-          $this->validate->isEmail($toSave['fromEmail']);
-          $this->validate->isEmail($toSave['toEmail']);
+          $this->validate->isEmail($toSave,'fromEmail');
+          $this->validate->isEmail($toSave,'toEmail');
           $this->response->message = $this->validate->getError();
           $this->response->status = $this->validate->getStatusValitadion();
-          $this->response->data = $this->saveIfValidationIsTrue($toSave);
+          $this->response->data = $this->saveIfNoErros($toSave);
           return $this->response->json();  
     }
     
@@ -26,16 +26,26 @@ class CardController {
     }
     
     public function delete($idToDelete){
-        $this->response->data = $this->deleteIfIdIsInt($idToDelete);
+        $this->validate->isInt($idToDelete);
+        $this->response->message = $this->validate->getError();
+        $this->response->status = $this->validate->getStatusValitadion();
+        $this->response->data = $this->deleteIfNoErros($idToDelete);
         return $this->response->json();
     }
     
     public function update($arrayToUpdate){
-        $this->response->data = $this->card->update($arrayToUpdate);
+        $this->response->data = $this->validate->updateReturn($this->card->update($arrayToUpdate));
+        $this->response->message = $this->validate->getError();
         return $this->response->json();
     }
-
-    private function saveIfValidationIsTrue($arrayToSave){
+    
+    private function deleteIfNoErros($idToDelete){
+        if($this->validate->getStatusValitadion()){
+            return $this->response->data = $this->card->delete($idToDelete);
+        }
+    }
+    
+    private function saveIfNoErros($arrayToSave){
         if($this->validate->getStatusValitadion()){
             return $this->response->data = $this->card->save($arrayToSave);
         }
