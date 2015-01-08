@@ -1,7 +1,6 @@
 {
    "require": {
-	"silex/silex": "~1.1",
-        "symfony/validator": "~2.3"
+	"silex/silex": "~1.1"
    },
    "autoload": {
         "psr-0": {
@@ -9,7 +8,6 @@
         },
         "classmap": [
             "services",
-            "services2",
             "test"
         ]
     }

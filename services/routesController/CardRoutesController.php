@@ -2,7 +2,6 @@
 
 use Silex\Application as Application;
 use Symfony\Component\HttpFoundation\Request as Request;
-//use Cartao\services\model\card\CardModel as CardModel;
 use Cartao\services\controllers\CardController as CardController;
 
 class CardRoutesController{

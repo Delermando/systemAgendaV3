@@ -2,6 +2,10 @@
 
 class DBConnection {
     private $conn;
+    private $host = '192.168.0.198';
+    private $dbName = 'agenda';
+    private $dbUser = 'agenda';
+    private $pass = 'agenda';
     
     public function __construct() {
         return $this->Connect();
@@ -9,7 +13,7 @@ class DBConnection {
     
     private function Connect() {
         try {
-            $this->conn = new \PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+            $this->conn = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbName, $this->dbUser, $this->pass);
             $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
             $this->conn->setAttribute(\PDO::ATTR_EMULATE_PREPARES,TRUE);

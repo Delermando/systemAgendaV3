@@ -26,6 +26,7 @@ class CardController {
     }
     
     public function delete($idToDelete){
+        $this->validate->isInt();
         $this->response->data = $this->deleteIfIdIsInt($idToDelete);
         return $this->response->json();
     }
@@ -41,10 +42,10 @@ class CardController {
         }
     }
     private function deleteIfIdIsInt($idToDelete){
-//        if($this->validate->getStatusValitadion()){
+        if($this->validate->getStatusValitadion()){
             return $this->response->data = $this->card->delete($idToDelete);
 //            return $this->response->data = $idToDelete;
-//        }
+        }
     }
 
 }
