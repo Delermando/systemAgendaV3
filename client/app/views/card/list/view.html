@@ -1,1 +1,5 @@
-<p>list.</p>
+<div ng-controller="DataControllerList as store">
+    <div class="list-group-item" ng-repeat="product in store.products">
+        <h3>{{product.fromEmail}} <em class="pull-right"></em></h3>
+    </div>
+</div>

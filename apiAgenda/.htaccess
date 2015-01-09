@@ -1,8 +1,5 @@
-<IfModule mod_rewrite.c>
-    Options -MultiViews
-
+  Header set Access-Control-Allow-Origin "*"
     RewriteEngine On
     #RewriteBase /path/to/app
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [QSA,L]
-</IfModule>

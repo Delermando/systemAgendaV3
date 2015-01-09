@@ -1,1 +1,5 @@
-<p>edit.</p>
+<div ng-controller="DataControllerEdit as store">
+    <div class="list-group-item" ng-repeat="product in store.products">
+        <h3>{{product.message}} <em class="pull-right"></em></h3>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.list', ['ngRoute'])
+angular.module('api.list', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/list', {
@@ -9,6 +9,15 @@ angular.module('myApp.list', ['ngRoute'])
   });
 }])
 
+
 .controller('listCtrl', [function() {
 
-}]);
+}])
+
+.controller('DataControllerList', ['$http', function($http){    
+    var store = this;
+    store.products = [];
+    $http.get('http://local.api.com/v1/cards/list').success(function(data){
+            store.products = data.data;
+    });     
+ }]);

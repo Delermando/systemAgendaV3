@@ -1,1 +1,7 @@
-<p>delete.</p>
+<div ng-controller="DataControllerDelete as store">
+    <div class="list-group-item" ng-repeat="product in store.products">
+        <h3>{{product.message}} <em class="pull-right"></em></h3>
+    </div>
+</div>
+
+<input type="button" value="REMOVE ESSA PORRA" ng-click="removeId()" />
