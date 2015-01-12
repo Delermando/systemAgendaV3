@@ -8,28 +8,31 @@ class CardRoutesController{
     private $app;
     private $payload;
     
-    public function __construct(Request $request) {
+    public function __construct() {
         $this->cardController = new CardController();
-//        $this->payload = $this->constructPayload($request);
     }
 
+    public function home() {
+      return 'API Agenda';
+    }
     public function cardList() {
       return $this->cardController->select();
     }
     
     public function cardSave() {
-        $this->constructPayload($request);
+        $this->constructPayload();
         return $this->cardController->save($this->payload);
     }
     
     public function cardUpdate() {
-      $this->constructPayload($request);
+      $this->constructPayload();
       return $this->cardController->update($this->payload);
     }
     public function cardDelete($id) {
       return $this->cardController->delete($id);
     }
-    private function constructPayload(Request $request){
-        return (array)json_decode($request->getContent());
+    private function constructPayload(){
+        $request = new Request();
+        $this->payload = (array)json_decode($request->getContent());
     }
 }

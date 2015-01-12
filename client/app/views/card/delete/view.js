@@ -19,10 +19,10 @@ angular.module('api.delete', ['ngRoute'])
     store.products = [];  
         
     var userData = {
-        idCard: "223"
+        idCard: "245"
     };
     
-    $http.get('http://local.api.com/v1/cards/delete/ddede', userData).success(function(data) {
+    $http.post('http://local.api.com/v1/cards/delete/248', userData).success(function(data) {
         console.log(data);
     });
  }]);

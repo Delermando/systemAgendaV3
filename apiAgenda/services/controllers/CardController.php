@@ -12,12 +12,15 @@ class CardController {
     }
     
     public function save($toSave){
-          $this->validate->isEmail($toSave,'fromEmail');
-          $this->validate->isEmail($toSave,'toEmail');
-          $this->response->message = $this->validate->getError();
-          $this->response->status = $this->validate->getStatusValitadion();
-          $this->response->data = $this->saveIfNoErros($toSave);
-          return $this->response->json();  
+        $this->validate->arrayIsSet($toSave);
+        $this->validate->checkJsonFormat($toSave, array('fromEmail', 'fromName', 'toEmail', 'toName', 'message','date'));
+        $this->validate->isEmail($toSave,'fromEmail');
+        $this->validate->isEmail($toSave,'toEmail');
+        $this->validate->isDate($toSave, 'date');
+        $this->response->message = $this->validate->getError();
+        $this->response->status = $this->validate->getStatusValitadion();
+        $this->response->data = $this->saveIfNoErros($toSave);
+        return $this->response->json();             
     }
     
     public function select(){
@@ -26,7 +29,7 @@ class CardController {
     }
     
     public function delete($idToDelete){
-        $this->validate->isInt($idToDelete);
+        $this->validate->isInt(array('id'=>$idToDelete),'id');
         $this->response->message = $this->validate->getError();
         $this->response->status = $this->validate->getStatusValitadion();
         $this->response->data = $this->deleteIfNoErros($idToDelete);
