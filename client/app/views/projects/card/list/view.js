@@ -16,8 +16,8 @@ angular.module('api.list', ['ngRoute'])
 
 .controller('DataControllerList', ['$http', function($http){    
     var store = this;
-    store.products = [];
+    store.json = [];
     $http.get('http://local.api.com/v1/cards/list').success(function(data){
-            store.products = data.data;
+            store.json = data.data;
     });     
  }]);

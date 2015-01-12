@@ -1,35 +1,34 @@
 'use strict';
 
 angular.module('api.save', ['ngRoute'])
-
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/save', {
-    templateUrl: 'views/projects/card/save/view.html',
-    controller: 'saveCtrl'
-  });
-}])
-
-.controller('saveCtrl', [function() {
-
-}])
-
-.controller('DataControllerSave', ['$http', function($http){
-    debugger; 
-    var store = this;
-    store.products = [];  
-    
-    var userData = {
-        fromName: "dede",
-        fromEmail: "dede@hotmail.com",
-        toName: "dede",
-        toEmail: "dede@hotmail.com",
-        message: "teste message",
-        date: "24-01-1992"
-    };
-    
-    $http.post('http://local.api.com/v1/cards/save', userData).success(function(data) {
-         store.products = data.data;
+.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.when('/save', {
+        templateUrl: 'views/projects/card/save/view.html',
+        controller: 'saveCtrl'
     });
- }]);
+}])
+
+.controller('saveCtrl', function ($scope, $http) {
+    var store = this;
+    $scope.submitForm = function (isValid) {
+        if (isValid) {
+            var userData = {
+                fromName: $scope.saveCard.fromName.$viewValue,
+                fromEmail: $scope.saveCard.fromEmail.$viewValue,
+                toName: $scope.saveCard.toName.$viewValue,
+                toEmail: $scope.saveCard.toEmail.$viewValue,
+                message: $scope.saveCard.message.$viewValue,
+                date: $scope.saveCard.selectDay.$viewValue + "-"
+                        + $scope.saveCard.selectMonth.$viewValue + "-"
+                        + $scope.saveCard.selectYear.$viewValue
+            };
+            $http.post('http://local.api.com/v1/cards/save', userData).success(function (data) {
+//                if(!$scope.$$phase) {
+                     $scope.return =  'de';
+//                }
+            });
+        }
+    };
+});
 
 

@@ -1,6 +1,6 @@
 <div ng-controller="DataControllerList as store">
     <div class="list">
-        <form method="POST" >
+        <form method="POST" novalidate>
             <table border="1" >
                 <tbody>
                     <tr>
@@ -16,15 +16,15 @@
                         <td><strong>Data envio</strong></td>
                         <td colspan="2"><strong>Data criação</strong></td>
                     </tr>
-                    <tr class="list-group-item" ng-repeat="product in store.products">
+                    <tr class="list-group-item" ng-repeat="cardInfo in store.json">
                         <td><input type='checkbox' name='arrayExcluir[]' value='{{product.IDScheduleSend}}'></td>
-                        <td>{{product.emailToEmail}}</td>
-                        <td>{{product.nameToEmail}}</td>
-                        <td>{{product.emailFromEmail}}</td>
-                        <td>{{product.nameFromEmail}}</td>
-                        <td>{{product.message}}</td>
-                        <td>{{product.dateToSend}}</td>
-                        <td>{{product.createDate}}</td>
+                        <td>{{cardInfo.emailToEmail}}</td>
+                        <td>{{cardInfo.nameToEmail}}</td>
+                        <td>{{cardInfo.emailFromEmail}}</td>
+                        <td>{{cardInfo.nameFromEmail}}</td>
+                        <td>{{cardInfo.message}}</td>
+                        <td>{{cardInfo.dateToSend}}</td>
+                        <td>{{cardInfo.createDate}}</td>
                         <td><a href="#"><img src="views/globals/img/edit.png"></a></td>
                     </tr>
             </table>

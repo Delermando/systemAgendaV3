@@ -45,7 +45,7 @@ a:hover {
 
 .formCadastro {
     margin: 30px auto 0;
-    width: 500px;
+    width: 445px;
 }
 
 
@@ -182,5 +182,22 @@ textarea[name="txtMensagem"] {
 }
 
 label p {
+    font-weight: bold;
+}
+
+.formBoxMensagem textarea {
+    height: 100px;
+    width: 425px;
+}
+
+.widthBox{
+ width: 445px;   
+}
+
+.date{
+    text-align: center;
+}
+
+.formCadastro label {
     font-weight: bold;
 }

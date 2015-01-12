@@ -1,104 +1,100 @@
-<div ng-controller="DataControllerSave as store">
-    <!--<div class="list-group-item" ng-repeat="product in store.products">-->
-    <h3>{{product| json}} <em class="pull-right"></em></h3>
-    <!--</div>-->
-</div>
 <div class="formCadastro">
-    <form method="POST" action="?action=cadastro&amp;cadastrarCartoes=true" name="MontaCartao">
-        <div class="formBoxMensagem">  
-            <label for="txtMensagem"><p>Mensagem</p>
-                <textarea name="txtMensagem"></textarea>
-            </label>
+    <form name="saveCard" ng-controller="saveCtrl as s" ng-submit="submitForm(saveCard.$valid)" novalidate> 
+        <span class="help-block" ng-show="saveCard.fromEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="saveCard.fromEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="saveCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="saveCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="saveCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
+        <div class="formBoxMensagem widthBox">  
+            <label for="txtMensagem">Mensagem</label>
+            <textarea name="message" ng-model="message"  ng-minlength="10" placeholder="Mensagem..."  required></textarea>
         </div>
-        <div class="formBox">
+        <div class="formBox widthBox">
             <div class="float margenInput">
-                <label for="txtNomeRemetente"><p>Nome do remetente</p>
-                    <input type="text" name="txtNomeRemetente" maxlength="50" value="" >
-                </label>
+                <label for="txtNomeRemetente">Nome do remetente</label><br />
+                <input type="text" name="fromName" ng-model="fromName" ng-minlength="3" placeholder="Example..." required>
             </div>
             <div class="float">
-                <label for="txtEmailRemetente"><p>Email do remetente</p>
-                    <input type="text" name="txtEmailRemetente" maxlength="100" value="">
-                </label>
+                <label for="txtEmailRemetente">Email do remetente</label><br />
+                <input  name="fromEmail" ng-model="fromEmail" type="text" class="form-control" placeholder="example@example.com" required>
             </div>
         </div>
-        <div class="formBox">
+        <div class="formBox widthBox">
             <div class="float margenInput">
-                <label for="txtNomeDestinatario"><p>Nome do destinatário</p>
-                    <input type="text" value="" name="txtNomeDestinatario" maxlength="50">
-                </label>
+                <label for="nomeDestinatario">Nome do destinatário</label><br />
+                <input type="text"  name="toName" ng-model="toName" ng-minlength="3" placeholder="Example..." required>
+
             </div>
             <div class="float">
-                <label for="txtEmailDestinatario"><p>Email do destinatário</p>
-                    <input type="text" value="" name="txtEmailDestinatario" maxlength="100">
-                </label>
+                <label for="emailDestinatario">Email do destinatário</label><br />
+                <input  name="toEmail" ng-model="toEmail" type="email" class="form-control" placeholder="example@example.com" required>
             </div>
         </div>
-        <div class="formBox">
-            <label><div class="labelEnviar left"><p>Enviar no dia:</p></div>
-                <div class="left">
-                    <select name="selectDia">
-                        <option value="">Dia</option>
-                        <option value="01">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
-                    <select name="selectMes">
-                        <option value="">Mês</option>
-                        <option value="01">Janeiro</option>
-                        <option value="02">Fevereiro</option>
-                        <option value="03">Março</option>
-                        <option value="04">Abril</option>
-                        <option value="05">Maio</option>
-                        <option value="06">Junho</option>
-                        <option value="07">Julho</option>
-                        <option value="08">Agosto</option>
-                        <option value="09">Setembro</option>
-                        <option value="10">Outubro</option>
-                        <option value="11">Novembro</option>
-                        <option value="12">Dezembro</option>
-                    </select>
-                    <select name="selectAno">
-                        <option value="">Ano</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                    </select>
-                </div>
-            </label>
+        <div class="formBox date widthBox">
+            <label for="selectDay">Enviar no dia:</label><br />
+            <div class="">
+                <select name="selectDay" ng-model="selectDay" required>
+                    <option value="">Dia</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select name="selectMonth" ng-model="selectMonth" required>
+                    <option value="">Mês</option>
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+                <select name="selectYear" ng-model="selectYear" required>
+                    <option value="">Ano</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                </select>
+            </div>
         </div>
-        <div class="botaoEnviar">
-            <input type="submit" value="Enviar" name="btnEnviar">
+        <div class="botaoEnviar widthBox">
+            <input type="submit" value="Enviar" ng-disabled="saveCard.$invalid" class="btn btn-primary" >
         </div>
+        {{return | json}}
     </form>
 </div>
