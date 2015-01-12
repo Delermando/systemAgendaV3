@@ -9,16 +9,17 @@
   <title>My AngularJS App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" rel="stylesheet" href="views/globals/css/style.css" />
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
-  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="views/globals/css/app.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
   <ul class="menu">
-    <li><a href="#/home">home</a></li>
-    <li><a href="#/list">list</a></li>
-    <li><a href="#/save">save</a></li>
+    <li><a href="#/home">Home</a></li>
+    <li><a href="#/list">Lista de cartoes</a></li>
+    <li><a href="#/save">Cadastrar</a></li>
     <li><a href="#/edit">edit</a></li>
     <li><a href="#/delete">delete</a></li>
   </ul>
@@ -34,12 +35,12 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="app.js"></script>
-  <script src="views/home/view.js"></script>
-  <script src="views/card/list/view.js"></script>
-  <script src="views/card/save/view.js"></script>
-  <script src="views/card/edit/view.js"></script>
-  <script src="views/card/delete/view.js"></script>
+  <script src="views/globals/js/app.js"></script>
+  <script src="views/globals/home/view.js"></script>
+  <script src="views/projects/card/list/view.js"></script>
+  <script src="views/projects/card/save/view.js"></script>
+  <script src="views/projects/card/edit/view.js"></script>
+  <script src="views/projects/card/delete/view.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>

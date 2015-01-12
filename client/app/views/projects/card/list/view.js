@@ -4,7 +4,7 @@ angular.module('api.list', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/list', {
-    templateUrl: 'views/card/list/view.html',
+    templateUrl: 'views/projects/card/list/view.html',
     controller: 'listCtrl'
   });
 }])

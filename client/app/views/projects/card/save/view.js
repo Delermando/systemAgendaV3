@@ -4,7 +4,7 @@ angular.module('api.save', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/save', {
-    templateUrl: 'views/card/save/view.html',
+    templateUrl: 'views/projects/card/save/view.html',
     controller: 'saveCtrl'
   });
 }])
@@ -28,7 +28,7 @@ angular.module('api.save', ['ngRoute'])
     };
     
     $http.post('http://local.api.com/v1/cards/save', userData).success(function(data) {
-        console.log('post success');
+         store.products = data.data;
     });
  }]);
 

@@ -1,0 +1,36 @@
+<div ng-controller="DataControllerList as store">
+    <div class="list">
+        <form method="POST" >
+            <table border="1" >
+                <tbody>
+                    <tr>
+                        <td colspan="9"><h3>Informações</h3></td>
+                    </tr>
+                    <tr class="listHead">
+                        <td><strong><a href="#" id="excluir"><img src="views/globals/img/delete.png"></a></strong></td>
+                        <td><strong>E. remetente</strong></td>
+                        <td><strong>N. remetente</strong></td>
+                        <td><strong>E. destinatario</strong></td>
+                        <td><strong>N. destinatario</strong></td>
+                        <td><strong>Mensagem</strong></td>
+                        <td><strong>Data envio</strong></td>
+                        <td colspan="2"><strong>Data criação</strong></td>
+                    </tr>
+                    <tr class="list-group-item" ng-repeat="product in store.products">
+                        <td><input type='checkbox' name='arrayExcluir[]' value='{{product.IDScheduleSend}}'></td>
+                        <td>{{product.emailToEmail}}</td>
+                        <td>{{product.nameToEmail}}</td>
+                        <td>{{product.emailFromEmail}}</td>
+                        <td>{{product.nameFromEmail}}</td>
+                        <td>{{product.message}}</td>
+                        <td>{{product.dateToSend}}</td>
+                        <td>{{product.createDate}}</td>
+                        <td><a href="#"><img src="views/globals/img/edit.png"></a></td>
+                    </tr>
+            </table>
+        </form>
+    </div>        
+</div>
+
+
+
