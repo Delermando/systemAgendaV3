@@ -6,6 +6,7 @@ $app['card.route'] = $app->share(function() use ($app) {
 
 $app->get('/', 'card.route:home');
 $app->get('/v1/cards/list', 'card.route:cardList');
-$app->post('/v1/cards/delete/{id}', 'card.route:cardDelete');
+$app->get('/v1/cards/list/{idCard}', 'card.route:getUnicCard');
+$app->post('/v1/cards/delete', 'card.route:cardDelete');
 $app->post('/v1/cards/save', 'card.route:cardSave');
 $app->post('/v1/cards/update', 'card.route:cardUpdate');

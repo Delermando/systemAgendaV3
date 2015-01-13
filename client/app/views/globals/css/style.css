@@ -115,6 +115,7 @@ textarea[name="txtMensagem"] {
 
 .list table {
     margin: 0 auto;
+    margin-top: 8px;
 }
 
 
@@ -200,4 +201,15 @@ label p {
 
 .formCadastro label {
     font-weight: bold;
+}
+
+
+.search {
+    display: block;
+    text-align: right;
+    width: 100%;
+}
+
+.search label {
+    margin-right: 215px;
 }

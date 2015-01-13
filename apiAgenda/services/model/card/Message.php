@@ -18,14 +18,12 @@ class Message{
         return $this->DB->runDelete($stm);       
     }
     
-    public function update($column, $value, $id){
-        $sql = "UPDATE psnMessageToSend SET {$column} = :value WHERE agnID = :id";
+    public function update($message, $id){
+        $sql = "UPDATE psnMessageToSend SET agnMessage = :message WHERE agnID = :id";
         $stm = $this->DB->prepare($sql);
-        $stm->bindParam(":value", $value, \PDO::PARAM_STR);
+        $stm->bindParam(":message", $message, \PDO::PARAM_STR);
         $stm->bindParam(":id", $id, \PDO::PARAM_INT);
-        $return = $this->DB->runUpdate($stm);
-        var_dump($return);
-        return $return;
+        return $this->DB->runUpdate($stm);
     }
     
     private function insert($message) {

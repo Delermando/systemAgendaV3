@@ -23,9 +23,7 @@ angular.module('api.save', ['ngRoute'])
                         + $scope.saveCard.selectYear.$viewValue
             };
             $http.post('http://local.api.com/v1/cards/save', userData).success(function (data) {
-//                if(!$scope.$$phase) {
-                     $scope.return =  'de';
-//                }
+                $scope.apiResponse = data.response;
             });
         }
     };

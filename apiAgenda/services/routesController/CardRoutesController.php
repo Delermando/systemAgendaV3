@@ -19,6 +19,10 @@ class CardRoutesController{
       return $this->cardController->select();
     }
     
+    public function getUnicCard($idCard){
+         return $this->cardController->selectUnicCard($idCard);
+    }
+
     public function cardSave() {
         $this->constructPayload();
         return $this->cardController->save($this->payload);
@@ -28,9 +32,11 @@ class CardRoutesController{
       $this->constructPayload();
       return $this->cardController->update($this->payload);
     }
-    public function cardDelete($id) {
-      return $this->cardController->delete($id);
+    public function cardDelete() {
+      $this->constructPayload();
+      return $this->cardController->delete($this->payload);
     }
+    
     private function constructPayload(){
         $request = new Request();
         $this->payload = (array)json_decode($request->getContent());

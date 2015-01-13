@@ -62,6 +62,18 @@ class RelationCard{
         $stm = $this->DB->prepare($sql);        
         return  $this->DB->runSelect($stm);
     }
+    
+    public function selectUnicCard($idCard) {
+        $sql = "SELECT ss.agnID AS IDScheduleSend, fe.agnID AS IDFromEmail, te.agnID AS IDToEmail, ms.agnID AS IDMessage, 
+                fe.agnEmail AS emailFromEmail, fe.agnName AS nameFromEmail, te.agnEmail AS emailToEmail, te.agnName AS nameToEmail, 
+                agnMessage AS message, agnCreateDate AS createDate, agnDateToSend AS dateToSend FROM psnScheduleSend AS ss 
+                INNER JOIN psnFromEmail AS fe ON (ss.agnIDFromEmail = fe.agnID) 
+                INNER JOIN psnToEmail AS te ON (ss.agnIDToEmail = te.agnID)
+                INNER JOIN psnMessageToSend AS ms ON (ss.agnIDMessage = ms.agnID) WHERE ss.agnID = :idCard";
+        $stm = $this->DB->prepare($sql);    
+        $stm->bindParam(":idCard", $idCard, \PDO::PARAM_INT);
+        return  $this->DB->runSelect($stm);
+    }
 
     
 //    private function countRegistersToDelete($rowDelete) {

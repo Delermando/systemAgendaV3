@@ -18,7 +18,7 @@ class Response {
 
     private function response() {
         if ($this->status) {
-            return 'sucess';
+            return 'success';
         }
         return 'failed';
     }

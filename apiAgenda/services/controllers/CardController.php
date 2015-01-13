@@ -27,9 +27,13 @@ class CardController {
         $this->response->data = $this->card->select();
         return $this->response->json();
     }
+    public function selectUnicCard($idCard){
+        $this->response->data = $this->card->selectUnicUser($idCard);
+        return $this->response->json();
+    }
     
     public function delete($idToDelete){
-        $this->validate->isInt(array('id'=>$idToDelete),'id');
+        $this->validate->checkJsonFormat($idToDelete, array('idCard'));
         $this->response->message = $this->validate->getError();
         $this->response->status = $this->validate->getStatusValitadion();
         $this->response->data = $this->deleteIfNoErros($idToDelete);
@@ -37,7 +41,12 @@ class CardController {
     }
     
     public function update($arrayToUpdate){
-        $this->response->data = $this->validate->updateReturn($this->card->update($arrayToUpdate));
+        $this->validate->arrayIsSet($arrayToUpdate);
+        $this->validate->checkJsonFormat($arrayToUpdate, array('idCard','fromEmail', 'fromName', 'toEmail', 'toName', 'message','date'));
+        $this->validate->isEmail($arrayToUpdate,'fromEmail');
+        $this->validate->isEmail($arrayToUpdate,'toEmail');
+        $this->validate->isDate($arrayToUpdate, 'date');
+        $this->response->data  = $this->card->update($arrayToUpdate);
         $this->response->message = $this->validate->getError();
         return $this->response->json();
     }

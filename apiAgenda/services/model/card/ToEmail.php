@@ -23,10 +23,11 @@ class ToEmail{
         return $this->testDelete($rowsDeleted);
     }
     
-    public function update($column, $value, $id){
-        $sql = "UPDATE psnToEmail SET {$column} = :value WHERE agnID = :id";
+    public function update($email, $name, $id){
+        $sql = "UPDATE psnToEmail SET agnEmail = :email, agnName = :name WHERE agnID = :id";
         $stm = $this->DB->prepare($sql);
-        $stm->bindParam(":value", $value, \PDO::PARAM_STR);
+        $stm->bindParam(":email", $email, \PDO::PARAM_STR);
+        $stm->bindParam(":name", $name, \PDO::PARAM_STR);
         $stm->bindParam(":id", $id, \PDO::PARAM_INT);
         return $this->DB->runUpdate($stm);
     }

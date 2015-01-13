@@ -1,13 +1,19 @@
 <div ng-controller="DataControllerList as store">
-    <div class="list">
-        <form method="POST" novalidate>
+    <div class="list" ng-controller="DeleteCards">
+        <span ng-show="apiResponse == 'success'">{{numbOfDeletedItens}} registros deletados com sucesso!</span>
+        <form method="POST" ng-controller="UpdateCards" novalidate>
+            <div class="search">
+                <label> Pesquisar: 
+                    <input type="text" class="ng-valid ng-dirty" ng-model="filtro">
+                </label>
+            </div>
             <table border="1" >
                 <tbody>
                     <tr>
                         <td colspan="9"><h3>Informações</h3></td>
                     </tr>
                     <tr class="listHead">
-                        <td><strong><a href="#" id="excluir"><img src="views/globals/img/delete.png"></a></strong></td>
+                        <td><strong><a href="" id="excluir" ng-click="mountArrayOfCardsToDelete()"><img src="views/globals/img/delete.png"></a></strong></td>
                         <td><strong>E. remetente</strong></td>
                         <td><strong>N. remetente</strong></td>
                         <td><strong>E. destinatario</strong></td>
@@ -16,8 +22,8 @@
                         <td><strong>Data envio</strong></td>
                         <td colspan="2"><strong>Data criação</strong></td>
                     </tr>
-                    <tr class="list-group-item" ng-repeat="cardInfo in store.json">
-                        <td><input type='checkbox' name='arrayExcluir[]' value='{{product.IDScheduleSend}}'></td>
+                    <tr class="list-group-item" ng-repeat="cardInfo in store.json|filter:filtro">
+                        <td><input type='checkbox'  ng-model="cardInfo.id" ng-value="{{cardInfo.IDScheduleSend}}" ></td>
                         <td>{{cardInfo.emailToEmail}}</td>
                         <td>{{cardInfo.nameToEmail}}</td>
                         <td>{{cardInfo.emailFromEmail}}</td>
@@ -25,11 +31,11 @@
                         <td>{{cardInfo.message}}</td>
                         <td>{{cardInfo.dateToSend}}</td>
                         <td>{{cardInfo.createDate}}</td>
-                        <td><a href="#"><img src="views/globals/img/edit.png"></a></td>
+                        <td><a href="" ng-click="getIdForUpdate()" ng-model="cardInfo.idUpdate" ng-value="{{cardInfo.IDScheduleSend}}"><img src="views/globals/img/edit.png"></a></td>
                     </tr>
             </table>
         </form>
-    </div>        
+    </div> 
 </div>
 
 
