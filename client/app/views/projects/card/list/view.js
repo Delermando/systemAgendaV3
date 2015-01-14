@@ -3,48 +3,42 @@
 angular.module('api.list', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/list', {
-            templateUrl: 'views/projects/card/list/view.html',
-            controller: 'DataControllerList'
+    $routeProvider.when('/list', {
+        templateUrl: 'views/projects/card/list/view.html',
+        controller: 'ListCards'
+    });
+}])
+
+.controller('ListCards',  function ($http, $scope) {
+    $scope.apiData = {};
+    $http.get('http://local.api.com/v1/cards/list').success(function (apiReturn) {
+        $scope.apiData = apiReturn.data;
+    });
+})
+
+.controller('DeleteCards', function ($scope, $http) {
+    $scope.mountArrayOfCardsToDelete = function () {
+        var idsSelected = [];
+
+        angular.forEach($scope.apiData, function (card, index) {
+            if (card.idToDelete) {
+                idsSelected.push(card.IDScheduleSend);
+            }
         });
-    }])
 
+        var jsonIdsToDelete = { idCard: idsSelected };
 
-.controller('DataControllerList', ['$http', '$scope', function ($http, $scope) {
-        $scope.json = {};
-        $http.get('http://local.api.com/v1/cards/list').success(function (data) {
-            $scope.json = data.data;
+        $http.post('http://local.api.com/v1/cards/delete', jsonIdsToDelete).success(function (apiReturn) {
+            $scope.apiResponse = apiReturn.response;
+            $scope.numbOfDeletedItems = apiReturn.data.numbOfDeletedItems;
         });
-    }])
 
+    };
+})
 
-.controller('DeleteCards', ['$scope', '$http', function ($scope, $http) {
-        $scope.mountArrayOfCardsToDelete = function () {
-            var selectedTodos = [];
-            var indexDeleteItens = [];
-
-            angular.forEach($scope.json, function (cardInfo, index) {
-                if (cardInfo.id) {
-                    selectedTodos.push(cardInfo.IDScheduleSend);
-                }
-            });
-
-            var jsonIdsDelete = {
-                idCard: selectedTodos
-            };
-
-
-            $http.post('http://local.api.com/v1/cards/delete', jsonIdsDelete).success(function (data) {
-                $scope.apiResponse = data.response;
-                $scope.numbOfDeletedItens = data.data.numbOfItensDeleted;
-            });
-
-        };
-    }])
-
-.controller('UpdateCards', ['$scope', '$http', '$location', function ($scope, $http, $location) {
-        $scope.getIdForUpdate = function () {
-            $location.path("/edit/" + this.cardInfo.IDScheduleSend)
-        };
-}]);
+.controller('UpdateCards',  function ($scope, $http, $location) {
+    $scope.getIdForUpdate = function () {
+        $location.path("/edit/" + this.card.IDScheduleSend)
+    };
+});
 

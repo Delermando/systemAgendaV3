@@ -1,6 +1,6 @@
-<div class="formList">
+<div class="cardList">
     <div class="list" ng-controller="DeleteCards">
-        <span ng-show="apiResponse == 'success'">{{numbOfDeletedItens}} registros deletados com sucesso!</span>
+        <span ng-show="apiResponse == 'success'">{{numbOfDeletedItems}} registros deletados com sucesso!</span>
         <form method="POST" ng-controller="UpdateCards" novalidate>
             <div class="search">
                 <label> Pesquisar: 
@@ -13,7 +13,7 @@
                         <td colspan="9"><h3>Informações</h3></td>
                     </tr>
                     <tr class="listHead">
-                        <td><strong><a href="" id="excluir" ng-click="mountArrayOfCardsToDelete()"><img src="views/globals/img/delete.png"></a></strong></td>
+                        <td><strong><a href="" id="excluir" ng-click="mountArrayOfCardsToDelete()"><img src="globals/img/delete.png"></a></strong></td>
                         <td><strong>E. remetente</strong></td>
                         <td><strong>N. remetente</strong></td>
                         <td><strong>E. destinatario</strong></td>
@@ -22,16 +22,16 @@
                         <td><strong>Data envio</strong></td>
                         <td colspan="2"><strong>Data criação</strong></td>
                     </tr>
-                    <tr class="list-group-item" ng-repeat="cardInfo in json|filter:filtro">
-                        <td><input type='checkbox'  ng-model="cardInfo.id" ng-value="{{cardInfo.IDScheduleSend}}" ></td>
-                        <td>{{cardInfo.emailToEmail}}</td>
-                        <td>{{cardInfo.nameToEmail}}</td>
-                        <td>{{cardInfo.emailFromEmail}}</td>
-                        <td>{{cardInfo.nameFromEmail}}</td>
-                        <td>{{cardInfo.message}}</td>
-                        <td>{{cardInfo.dateToSend}}</td>
-                        <td>{{cardInfo.createDate}}</td>
-                        <td><a href="" ng-click="getIdForUpdate()" ng-model="cardInfo.idUpdate" ng-value="{{cardInfo.IDScheduleSend}}"><img src="views/globals/img/edit.png"></a></td>
+                    <tr class="list-group-item" ng-repeat="card in apiData |filter:filtro">
+                        <td><input type='checkbox'  ng-model="card.idToDelete" ng-value="{{card.IDScheduleSend}}" ></td>
+                        <td>{{card.emailToEmail}}</td>
+                        <td>{{card.nameToEmail}}</td>
+                        <td>{{card.emailFromEmail}}</td>
+                        <td>{{card.nameFromEmail}}</td>
+                        <td>{{card.message}}</td>
+                        <td>{{card.dateToSend}}</td>
+                        <td>{{card.createDate}}</td>
+                        <td><a href="" ng-click="getIdForUpdate()" ng-model="card.idUpdate" ng-value="{{card.IDScheduleSend}}"><img src="globals/img/edit.png"></a></td>
                     </tr>
             </table>
         </form>
