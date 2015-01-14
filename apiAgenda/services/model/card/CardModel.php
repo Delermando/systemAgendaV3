@@ -29,17 +29,21 @@ class CardModel {
 
     public function update($arrayDataForUpdate) {
         $idsToUpdate = $this->instanceSelectIDsToDeleteRelationCard($arrayDataForUpdate['idCard']);
-        if (sizeof($idsToUpdate[0]) == 3) {
-            $return['fromEmail'] = $this->instanceUpdateFromEmail($arrayDataForUpdate['fromEmail'], $arrayDataForUpdate['fromName'], $idsToUpdate[0]['IDFromEmail']);
-            $return['toEmail'] = $this->instanceUpdateToEmail($arrayDataForUpdate['toEmail'], $arrayDataForUpdate['toName'], $idsToUpdate[0]['IDToEmail']);
-            $return['message'] = $this->instanceUpdateMessage($arrayDataForUpdate['message'], $idsToUpdate[0]['IDMessage']);
-            return $this->checkUpdated($return);
+        if (isset($idsToUpdate[0])) {
+            if (sizeof($idsToUpdate[0]) == 3) {
+                $return['fromEmail'] = $this->instanceUpdateFromEmail($arrayDataForUpdate['fromEmail'], $arrayDataForUpdate['fromName'], $idsToUpdate[0]['IDFromEmail']);
+                $return['toEmail'] = $this->instanceUpdateToEmail($arrayDataForUpdate['toEmail'], $arrayDataForUpdate['toName'], $idsToUpdate[0]['IDToEmail']);
+                $return['message'] = $this->instanceUpdateMessage($arrayDataForUpdate['message'], $idsToUpdate[0]['IDMessage']);
+                $return['schedule'] = $this->instanceUpdateRelationCard($arrayDataForUpdate['date'], $arrayDataForUpdate['idCard']);
+                return $this->checkUpdated($return);
+            }
         }
     }
-    
+
     public function select() {
         return $this->instanceSelectRelationCard();
     }
+
     public function selectUnicUser($idCard) {
         return $this->instanceSelectUnicRelationCard($idCard);
     }
@@ -99,6 +103,10 @@ class CardModel {
         return $this->chooseInstance($this->RelationCard)->save($idFromEmail, $idToEmail, $idMessage, $dataEnvio);
     }
 
+    private function instanceUpdateRelationCard($date, $id) {
+        return $this->chooseInstance($this->RelationCard)->update($date, $id);
+    }
+
     private function instanceDeleteRelationCard($id) {
         return $this->chooseInstance($this->RelationCard)->delete($id);
     }
@@ -114,6 +122,7 @@ class CardModel {
     private function instanceSelectRelationCard() {
         return $this->chooseInstance($this->RelationCard)->selectAllRegisters();
     }
+
     private function instanceSelectUnicRelationCard($idCard) {
         return $this->chooseInstance($this->RelationCard)->selectUnicCard($idCard);
     }
@@ -149,7 +158,7 @@ class CardModel {
             return '';
         }
     }
-    
+
     private function checkUpdated($arrayReturnUpdate) {
         $values = array_values($arrayReturnUpdate);
         if (in_array(1, $values)) {
@@ -158,4 +167,5 @@ class CardModel {
             return false;
         }
     }
+
 }

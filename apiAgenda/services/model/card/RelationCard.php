@@ -18,6 +18,14 @@ class RelationCard{
         return $this->DB->runDelete($stm);       
     }
     
+    public function update($date, $id){
+        $sql = "UPDATE psnScheduleSend SET agnDateToSend = :date WHERE agnID = :id";
+        $stm = $this->DB->prepare($sql);
+        $stm->bindParam(":date", $date, \PDO::PARAM_STR);
+        $stm->bindParam(":id", $id, \PDO::PARAM_INT);
+        return $this->DB->runUpdate($stm);
+    }
+    
     public function selecCountIDsInFromEmail($id) {
         $sql = "SELECT count(agnIDFromEmail) AS 'repeated' FROM psnScheduleSend WHERE agnIDFromEmail = :id";
         $stm = $this->DB->prepare($sql);

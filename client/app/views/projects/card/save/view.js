@@ -2,14 +2,15 @@
 
 angular.module('api.save', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/save', {
-        templateUrl: 'views/projects/card/save/view.html',
-        controller: 'saveCtrl'
-    });
-}])
+        $routeProvider.when('/save', {
+            templateUrl: 'views/projects/card/save/view.html',
+            controller: 'saveCtrl'
+        });
+    }])
 
 .controller('saveCtrl', function ($scope, $http) {
     var store = this;
+
     $scope.submitForm = function (isValid) {
         if (isValid) {
             var userData = {

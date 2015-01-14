@@ -43,7 +43,7 @@ a:hover {
 }
 
 
-.formCadastro {
+.formCadastro, .formUpdate {
     margin: 30px auto 0;
     width: 445px;
 }

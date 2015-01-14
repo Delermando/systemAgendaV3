@@ -1,41 +1,35 @@
-<div>
-    <div class="list-group-item">
-        <h3> <em class="pull-right"></em></h3>
-    </div>
-</div>
-
 <div class="formUpdate">
-    <form name="editCard" ng-controller="editCtrl as s" ng-submit="submitForm(editCard.$valid)" novalidate> 
-        <!--<span class="help-block" ng-show="saveCard.fromEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="saveCard.fromEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="saveCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="saveCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="saveCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
-        <span ng-show="apiResponse == 'success'">Cadastro do cartao realizado com sucesso!</span>
-        <span ng-show="apiResponse == 'failed'" >Por favor tente novamente! Ocorreu um erro na gravacao do cartao.</span>
-        <div class="formBoxMensagem widthBox"> -->
+    <form name="editCard" ng-controller="editCtrl" ng-submit="submitFormEdit(editCard.$valid)" novalidate> 
+        <span class="help-block" ng-show="editCard.toEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="editCard.fromEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="editCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="editCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="editCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
+        <span ng-show="apiResponse == 'success'">Atualizacao do cartao realizada com sucesso!</span>
+        <span ng-show="apiResponse == 'failed'" >Por favor tente novamente! Ocorreu um erro na atualizacao do cartao.</span>
+        <div class="formBoxMensagem widthBox"> 
             <label for="txtMensagem">Mensagem</label>
             <textarea name="message" ng-model="card.message"  ng-minlength="10"  required></textarea>
         </div>
         <div class="formBox widthBox">
             <div class="float margenInput">
                 <label for="txtNomeRemetente">Nome do remetente</label><br />
-                <input type="text" name="fromName" ng-model="card.nameFromEmail" ng-minlength="3" placeholder="Example..." required>{{json.0.fromName}}
+                <input type="text" name="fromName" ng-model="card.nameFromEmail" ng-minlength="3" placeholder="Example..." required>
             </div>
             <div class="float">
                 <label for="txtEmailRemetente">Email do remetente</label><br />
-                <input  name="fromEmail" ng-model="card.emailFromEmail" type="text" class="form-control" placeholder="example@example.com" required>{{json.0.fromEmail}}
+                <input  name="fromEmail" ng-model="card.emailFromEmail" type="email" class="form-control" placeholder="example@example.com" required>
             </div>
         </div>
         <div class="formBox widthBox">
             <div class="float margenInput">
-                <label for="nomeDestinatario">Nome do destinatário</label><br />{{json.0.toName}}
+                <label for="nomeDestinatario">Nome do destinatário</label><br />
                 <input type="text"  name="toName" ng-model="card.nameToEmail" ng-minlength="3" placeholder="Example..." required>
 
             </div>         
             <div class="float">
                 <label for="emailDestinatario">Email do destinatário</label><br />
-                <input  name="toEmail" ng-model="card.emailToEmail" type="email" class="form-control" placeholder="example@example.com" required>{{json.0.toEmail}}
+                <input  name="toEmail" ng-model="card.emailToEmail" type="email" class="form-control" placeholder="example@example.com" required>
             </div>
         </div>
         <div class="formBox date widthBox">
@@ -102,7 +96,7 @@
             </div>
         </div>
         <div class="botaoEnviar widthBox">
-            <input type="submit" value="Enviar" ng-disabled="saveCard.$invalid" class="btn btn-primary" >
+            <input type="submit" value="Enviar" ng-disabled="editCard.$invalid" class="btn btn-primary" >
         </div>
     </form>
 </div>

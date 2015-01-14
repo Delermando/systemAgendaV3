@@ -13,66 +13,35 @@ angular.module('api.edit', ['ngRoute'])
         $scope.card = {};
         $http.get('http://local.api.com/v1/cards/list/' + $routeParams.idCard).success(function (response) {
             var arrayDate = (response.data[0].dateToSend).split('-');
-            $scope.card = response.data[0];  
+            $scope.card = response.data[0];
             $scope.card['day'] = arrayDate[0];
             $scope.card['month'] = arrayDate[1];
             $scope.card['year'] = arrayDate[2];
         });
-}])
-   
-    .controller('editCtrl', function ($scope, $http) {
-//        alert('entro');
-            console.log($scope.submitForm);
-        $scope.submitForm = function (isValid) {
-//        if (isValid) {
-//            var userData = {
-//                fromName: $scope.saveCard.fromName.$viewValue,
-//                fromEmail: $scope.saveCard.fromEmail.$viewValue,
-//                toName: $scope.saveCard.toName.$viewValue,
-//                toEmail: $scope.saveCard.toEmail.$viewValue,
-//                message: $scope.saveCard.message.$viewValue,
-//                date: $scope.saveCard.selectDay.$viewValue + "-"
-//                        + $scope.saveCard.selectMonth.$viewValue + "-"
-//                        + $scope.saveCard.selectYear.$viewValue
-//            };
-//            $http.post('http://local.api.com/v1/cards/update', userData).success(function (data) {
-//                $scope.apiResponse = data.response;
-//            });
-//        }
-    };
-})
+    }])
 
-.filter('dateFormat', function(){
-    return function(input,separator,option) {
-        if (input) {
-            var d = input.split(separator);
-            if (option === 'year') {
-                return d[2];
-            } else if (option === 'month'){
-                return d[1];
-            } else if (option === 'day') {
-                return d[0];
-            }
+.controller('editCtrl', function ($scope, $http, $routeParams) {
+    $scope.submitFormEdit = function (isValid) {
+        if (isValid) {
+            var userData = {
+                idCard: $routeParams.idCard,
+                fromName: $scope.editCard.fromName.$viewValue,
+                fromEmail: $scope.editCard.fromEmail.$viewValue,
+                toName: $scope.editCard.toName.$viewValue,
+                toEmail: $scope.editCard.toEmail.$viewValue,
+                message: $scope.editCard.message.$viewValue,
+                date: $scope.editCard.selectDay.$viewValue + "-"
+                        + $scope.editCard.selectMonth.$viewValue + "-"
+                        + $scope.editCard.selectYear.$viewValue
+            };
+
+            console.log(userData)
+            $http.post('http://local.api.com/v1/cards/update', userData).success(function (data) {
+                $scope.apiResponse = data.response;
+            });
         }
     };
-})
+});
 
-        
-;
 
-//         .service('customHttp', [function(){
-//             var customHttp = {};
-//     
-//             customHttp.get = function(uri,data){
-//                $http.get(uri, data).success(function(e) {
-//                    if (e.response === 'success') {
-//                        return e;
-//                    } else {
-//                        return false;
-//                    }
-//                });
-//             }
-//             
-//             
-//             return customHttp;
-//         }]);
+

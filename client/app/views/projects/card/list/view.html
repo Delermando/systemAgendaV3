@@ -1,4 +1,4 @@
-<div ng-controller="DataControllerList as store">
+<div class="formList">
     <div class="list" ng-controller="DeleteCards">
         <span ng-show="apiResponse == 'success'">{{numbOfDeletedItens}} registros deletados com sucesso!</span>
         <form method="POST" ng-controller="UpdateCards" novalidate>
@@ -22,7 +22,7 @@
                         <td><strong>Data envio</strong></td>
                         <td colspan="2"><strong>Data criação</strong></td>
                     </tr>
-                    <tr class="list-group-item" ng-repeat="cardInfo in store.json|filter:filtro">
+                    <tr class="list-group-item" ng-repeat="cardInfo in json|filter:filtro">
                         <td><input type='checkbox'  ng-model="cardInfo.id" ng-value="{{cardInfo.IDScheduleSend}}" ></td>
                         <td>{{cardInfo.emailToEmail}}</td>
                         <td>{{cardInfo.nameToEmail}}</td>

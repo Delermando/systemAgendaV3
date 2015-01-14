@@ -1,7 +1,7 @@
 <div class="formCadastro">
     <form name="saveCard" ng-controller="saveCtrl as s" ng-submit="submitForm(saveCard.$valid)" novalidate> 
         <span class="help-block" ng-show="saveCard.fromEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="saveCard.fromEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="saveCard.toEmail.$error.email" >Email Invalido!</span>
         <span class="help-block" ng-show="saveCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
         <span class="help-block" ng-show="saveCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
         <span class="help-block" ng-show="saveCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
@@ -18,7 +18,7 @@
             </div>
             <div class="float">
                 <label for="txtEmailRemetente">Email do remetente</label><br />
-                <input  name="fromEmail" ng-model="fromEmail" type="text" class="form-control" placeholder="example@example.com" required>
+                <input  name="fromEmail" ng-model="fromEmail" type="email" class="form-control" placeholder="example@example.com" required>
             </div>
         </div>
         <div class="formBox widthBox">
