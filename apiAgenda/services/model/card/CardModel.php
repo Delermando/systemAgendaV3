@@ -151,9 +151,9 @@ class CardModel {
     }
 
     private function checkDeletedInten($arrayItenDelete) {
-        $numbOfItensDeleted = count($arrayItenDelete);
-        if ($numbOfItensDeleted > 0) {
-            return array('numbOfItensDeleted' => $numbOfItensDeleted);
+        $numbOfDeletedItems = count($arrayItenDelete);
+        if ($numbOfDeletedItems > 0) {
+            return array('numbOfDeletedItems' => $numbOfDeletedItems);
         } else {
             return '';
         }
