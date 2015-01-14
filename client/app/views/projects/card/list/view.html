@@ -33,9 +33,14 @@
                         <td>{{card.createDate}}</td>
                         <td><a href="" ng-click="getIdForUpdate()" ng-model="card.idUpdate" ng-value="{{card.IDScheduleSend}}"><img src="globals/img/edit.png"></a></td>
                     </tr>
+                    
             </table>
         </form>
-    </div> 
+        <div class="apiPagination">
+            <a href="#/list/{{page}}" ng-repeat="page in obejctToEachPage">[{{page}}]</a>
+        </div>
+    </div>             
+
 </div>
 
 

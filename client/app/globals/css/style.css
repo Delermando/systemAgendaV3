@@ -213,3 +213,12 @@ label p {
 .search label {
     margin-right: 215px;
 }
+
+.apiPagination {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.apiPagination a {
+    margin-left: 10px;
+}
