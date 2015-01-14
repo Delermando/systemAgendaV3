@@ -5,7 +5,7 @@ angular.module('api', [
     'api.home',
     'api.list',
     'api.save',
-    'api.edit',
+    'api.update',
     'api.version'
 ])
 .config(['$routeProvider', '$httpProvider', '$sceDelegateProvider', function ($routeProvider, $httpProvider, $sceDelegateProvider) {

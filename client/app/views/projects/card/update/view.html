@@ -1,42 +1,42 @@
 <div class="formUpdate">
-    <form name="editCard" ng-controller="editCtrl" ng-submit="submitFormEdit(editCard.$valid)" novalidate> 
-        <span class="help-block" ng-show="editCard.toEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="editCard.fromEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="editCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="editCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="editCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
+    <form name="formUpdateCard"  ng-submit="submitFormUpdate(formUpdateCard.$valid)" novalidate> 
+        <span class="help-block" ng-show="formUpdateCard.toEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="formUpdateCard.fromEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="formUpdateCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="formUpdateCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="formUpdateCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
         <span ng-show="apiResponse == 'success'">Atualizacao do cartao realizada com sucesso!</span>
         <span ng-show="apiResponse == 'failed'" >Por favor tente novamente! Ocorreu um erro na atualizacao do cartao.</span>
         <div class="formBoxMensagem widthBox"> 
             <label for="txtMensagem">Mensagem</label>
-            <textarea name="message" ng-model="card.message"  ng-minlength="10"  required></textarea>
+            <textarea name="message" ng-model="apiData.message"  ng-minlength="10"  required></textarea>
         </div>
         <div class="formBox widthBox">
             <div class="float margenInput">
                 <label for="txtNomeRemetente">Nome do remetente</label><br />
-                <input type="text" name="fromName" ng-model="card.nameFromEmail" ng-minlength="3" placeholder="Example..." required>
+                <input type="text" name="fromName" ng-model="apiData.nameFromEmail" ng-minlength="3" placeholder="Example..." required>
             </div>
             <div class="float">
                 <label for="txtEmailRemetente">Email do remetente</label><br />
-                <input  name="fromEmail" ng-model="card.emailFromEmail" type="email" class="form-control" placeholder="example@example.com" required>
+                <input  name="fromEmail" ng-model="apiData.emailFromEmail" type="email" class="form-control" placeholder="example@example.com" required>
             </div>
         </div>
         <div class="formBox widthBox">
             <div class="float margenInput">
                 <label for="nomeDestinatario">Nome do destinatário</label><br />
-                <input type="text"  name="toName" ng-model="card.nameToEmail" ng-minlength="3" placeholder="Example..." required>
+                <input type="text"  name="toName" ng-model="apiData.nameToEmail" ng-minlength="3" placeholder="Example..." required>
 
             </div>         
             <div class="float">
                 <label for="emailDestinatario">Email do destinatário</label><br />
-                <input  name="toEmail" ng-model="card.emailToEmail" type="email" class="form-control" placeholder="example@example.com" required>
+                <input  name="toEmail" ng-model="apiData.emailToEmail" type="email" class="form-control" placeholder="example@example.com" required>
             </div>
         </div>
         <div class="formBox date widthBox">
             <!--{{card.}}-->
             <label for="selectDay">Enviar no dia:</label><br />
             <div class="">
-                <select name="selectDay" required ng-model="card.day">
+                <select name="selectDay" required ng-model="apiData.day">
                     <option value="">Dia</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -70,7 +70,7 @@
                     <option value="30">30</option>
                     <option value="31">31</option>
                 </select>
-                <select name="selectMonth" ng-model="card.month" required>
+                <select name="selectMonth" ng-model="apiData.month" required>
                     <option value="">Mês</option>
                     <option value="01">Janeiro</option>
                     <option value="02">Fevereiro</option>
@@ -85,7 +85,7 @@
                     <option value="11">Novembro</option>
                     <option value="12">Dezembro</option>
                 </select>
-                <select name="selectYear" ng-model="card.year" required>
+                <select name="selectYear" ng-model="apiData.year" required>
                     <option value="">Ano</option>
                     <option value="2014">2014</option>
                     <option value="2015">2015</option>
@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="botaoEnviar widthBox">
-            <input type="submit" value="Enviar" ng-disabled="editCard.$invalid" class="btn btn-primary" >
+            <input type="submit" value="Enviar" ng-disabled="formUpdateCard.$invalid" class="btn btn-primary" >
         </div>
     </form>
 </div>

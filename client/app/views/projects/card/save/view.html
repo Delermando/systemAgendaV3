@@ -1,10 +1,10 @@
 <div class="formCadastro">
-    <form name="saveCard" ng-controller="saveCtrl as s" ng-submit="submitForm(saveCard.$valid)" novalidate> 
-        <span class="help-block" ng-show="saveCard.fromEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="saveCard.toEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="saveCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="saveCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="saveCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
+    <form name="formSaveCard" ng-submit="submitForm(formSaveCard.$valid)" novalidate> 
+        <span class="help-block" ng-show="formSaveCard.fromEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="formSaveCard.toEmail.$error.email" >Email Invalido!</span>
+        <span class="help-block" ng-show="formSaveCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="formSaveCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
+        <span class="help-block" ng-show="formSaveCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
         <span ng-show="apiResponse == 'success'">Cadastro do cartao realizado com sucesso!</span>
         <span ng-show="apiResponse == 'failed'" >Por favor tente novamente! Ocorreu um erro na gravacao do cartao.</span>
         <div class="formBoxMensagem widthBox">  
@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="botaoEnviar widthBox">
-            <input type="submit" value="Enviar" ng-disabled="saveCard.$invalid" class="btn btn-primary" >
+            <input type="submit" value="Enviar" ng-disabled="formSaveCard.$invalid" class="btn btn-primary" >
         </div>
     </form>
 </div>

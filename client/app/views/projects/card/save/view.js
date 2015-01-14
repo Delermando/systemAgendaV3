@@ -2,29 +2,27 @@
 
 angular.module('api.save', ['ngRoute'])
 .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/save', {
-            templateUrl: 'views/projects/card/save/view.html',
-            controller: 'saveCtrl'
-        });
-    }])
+    $routeProvider.when('/save', {
+        templateUrl: 'views/projects/card/save/view.html',
+        controller: 'SaveCard'
+    });
+}])
 
-.controller('saveCtrl', function ($scope, $http) {
-    var store = this;
-
+.controller('SaveCard', function ($scope, $http) {
     $scope.submitForm = function (isValid) {
         if (isValid) {
-            var userData = {
-                fromName: $scope.saveCard.fromName.$viewValue,
-                fromEmail: $scope.saveCard.fromEmail.$viewValue,
-                toName: $scope.saveCard.toName.$viewValue,
-                toEmail: $scope.saveCard.toEmail.$viewValue,
-                message: $scope.saveCard.message.$viewValue,
-                date: $scope.saveCard.selectDay.$viewValue + "-"
-                        + $scope.saveCard.selectMonth.$viewValue + "-"
-                        + $scope.saveCard.selectYear.$viewValue
+            var jsonPostVar = {
+                fromName: $scope.formSaveCard.fromName.$viewValue,
+                fromEmail: $scope.formSaveCard.fromEmail.$viewValue,
+                toName: $scope.formSaveCard.toName.$viewValue,
+                toEmail: $scope.formSaveCard.toEmail.$viewValue,
+                message: $scope.formSaveCard.message.$viewValue,
+                date: $scope.formSaveCard.selectDay.$viewValue + "-"
+                        + $scope.formSaveCard.selectMonth.$viewValue + "-"
+                        + $scope.formSaveCard.selectYear.$viewValue
             };
-            $http.post('http://local.api.com/v1/cards/save', userData).success(function (data) {
-                $scope.apiResponse = data.response;
+            $http.post('http://local.api.com/v1/cards/save', jsonPostVar).success(function (apiReturn) {
+                $scope.apiResponse = apiReturn.response;
             });
         }
     };

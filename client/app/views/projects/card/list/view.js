@@ -21,14 +21,12 @@ angular.module('api.list', ['ngRoute'])
         var idsSelected = [];
 
         angular.forEach($scope.apiData, function (card, index) {
-            if (card.idToDelete) {
-                idsSelected.push(card.IDScheduleSend);
-            }
+            if (card.idToDelete) {  idsSelected.push(card.IDScheduleSend); }
         });
 
-        var jsonIdsToDelete = { idCard: idsSelected };
+        var jsonPostVar = { idCard: idsSelected };
 
-        $http.post('http://local.api.com/v1/cards/delete', jsonIdsToDelete).success(function (apiReturn) {
+        $http.post('http://local.api.com/v1/cards/delete', jsonPostVar).success(function (apiReturn) {
             $scope.apiResponse = apiReturn.response;
             $scope.numbOfDeletedItems = apiReturn.data.numbOfDeletedItems;
         });
