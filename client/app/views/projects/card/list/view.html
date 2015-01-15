@@ -1,6 +1,8 @@
 <div class="cardList">
     <div class="list" ng-controller="DeleteCards">
-        <span ng-show="apiResponse == 'success'">{{numbOfDeletedItems}} registros deletados com sucesso!</span>
+        <div class="boxMessage">
+            <div class="message messageSucessBackground" ng-if="apiResponse == 'success'">Registros deletados com sucesso [{{numbOfDeletedItems}}]!</div>
+        </div>
         <form method="POST" name="formListCard" ng-controller="CallUpdatePage" novalidate>
             <div class="search">
                 <label> Pesquisar: 
@@ -10,7 +12,7 @@
             <table border="1" >
                 <tbody>
                     <tr>
-                        <td colspan="9"><h3>Informações</h3></td>
+                        <td colspan="9"><h3>Cartoes cadastrados</h3></td>
                     </tr>
                     <tr class="listHead">
                         <td><a href="" id="excluir" ng-click="deleteCards()"><img src="globals/img/delete.png"></a></td>

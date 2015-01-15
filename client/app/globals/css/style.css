@@ -44,10 +44,9 @@ a:hover {
 
 
 .formCadastro, .formUpdate {
-    margin: 30px auto 0;
+    margin: 0 auto;
     width: 445px;
 }
-
 
 .footerCenter {
     bottom: 0;
@@ -118,9 +117,8 @@ textarea[name="txtMensagem"] {
     margin-top: 8px;
 }
 
-
 .list td {
-    padding: 6px 8px 2px;
+    padding: 0 8px;
 }
 
 .list td a {
@@ -149,23 +147,29 @@ textarea[name="txtMensagem"] {
 .editCenter form {
     display: inline;
 }
+
 .message {
-    margin-top: 10px;
-    border: 1px solid;
-    color: #fff;
     font-weight: bold;
     height: 27px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     overflow: auto;
     padding-top: 10px;
     position: relative;
     text-align: center;
     z-index: 999999;
+    border: 1px solid;
 }
+
+.boxMessage {
+    height: 60px;
+}
+
 .messageSucessBackground{
-    background-image: url("../img/alerta_verde.png");
+    background-image: url("../img/success.png");
 }
 .messageFailedBackground{
-    background-image: url("../img/alerta_vermelho.png");
+    background-image: url("../img/failed.png");
 }
 .erro{
     color:red;
@@ -177,7 +181,7 @@ textarea[name="txtMensagem"] {
 .listHead{
     text-align: center;
 }
-    
+
 .labelEnviar {
     width: 100%;
 }
@@ -192,7 +196,7 @@ label p {
 }
 
 .widthBox{
- width: 445px;   
+    width: 445px;   
 }
 
 .date{
@@ -211,6 +215,7 @@ label p {
 }
 
 .search label {
+    font-weight: bold;
     margin-right: 215px;
 }
 
@@ -220,5 +225,14 @@ label p {
 }
 
 .apiPagination a {
+    color: #444;
+    font-weight: bold;
     margin-left: 10px;
+}
+
+.botaoEnviar.widthBox input[type="submit"] {
+    border: medium none;
+    border-radius: 7px;
+    height: 32px;
+    width: 120px;
 }

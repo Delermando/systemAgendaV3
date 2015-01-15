@@ -1,12 +1,14 @@
+<div class="boxMessage">
+    <div class="message messageFailedBackground" ng-if="formUpdateCard.toEmail.$error.email" >Email Invalido!</div>
+    <div class="message messageFailedBackground" ng-if="formUpdateCard.fromEmail.$error.email" >Email Invalido!</div>
+    <div class="message messageFailedBackground" ng-if="formUpdateCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</div>
+    <div class="message messageFailedBackground" ng-if="formUpdateCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</div>
+    <div class="message messageFailedBackground" ng-if="formUpdateCard.message.$error.minlength" >O nome deve ter no minimo 10 caracteres!</div>
+    <div class="message messageSucessBackground" ng-if="apiResponse == 'success'">Atualizacao do cartao realizada com sucesso!</div>
+    <div class="message messageFailedBackground" ng-if="apiResponse == 'failed'" >Por favor tente novamente! Ocorreu um erro na atualizacao do cartao.</div>
+</div>
 <div class="formUpdate">
     <form name="formUpdateCard"  ng-submit="submitFormUpdate(formUpdateCard.$valid)" novalidate> 
-        <span class="help-block" ng-show="formUpdateCard.toEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="formUpdateCard.fromEmail.$error.email" >Email Invalido!</span>
-        <span class="help-block" ng-show="formUpdateCard.fromName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="formUpdateCard.toName.$error.minlength" >O nome deve ter no minimo 3 caracteres!</span>
-        <span class="help-block" ng-show="formUpdateCard.message.$error.minlength"class="ng-invalid"  >O nome deve ter no minimo 10 caracteres!</span>
-        <span ng-show="apiResponse == 'success'">Atualizacao do cartao realizada com sucesso!</span>
-        <span ng-show="apiResponse == 'failed'" >Por favor tente novamente! Ocorreu um erro na atualizacao do cartao.</span>
         <div class="formBoxMensagem widthBox"> 
             <label for="txtMensagem">Mensagem</label>
             <textarea name="message" ng-model="apiData.message"  ng-minlength="10"  required></textarea>
