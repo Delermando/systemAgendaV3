@@ -66,7 +66,7 @@ class RelationCard{
                 agnMessage AS message, agnCreateDate AS createDate, agnDateToSend AS dateToSend FROM psnScheduleSend AS ss 
                 INNER JOIN psnFromEmail AS fe ON (ss.agnIDFromEmail = fe.agnID) 
                 INNER JOIN psnToEmail AS te ON (ss.agnIDToEmail = te.agnID)
-                INNER JOIN psnMessageToSend AS ms ON (ss.agnIDMessage = ms.agnID)";
+                INNER JOIN psnMessageToSend AS ms ON (ss.agnIDMessage = ms.agnID) ORDER BY agnCreateDate DESC";
         $stm = $this->DB->prepare($sql);        
         return  $this->DB->runSelect($stm);
     }
@@ -82,12 +82,4 @@ class RelationCard{
         $stm->bindParam(":idCard", $idCard, \PDO::PARAM_INT);
         return  $this->DB->runSelect($stm);
     }
-
-    
-//    private function countRegistersToDelete($rowDelete) {
-//        if(count($rowDelete) >= 1){
-//            return $rowDelete;
-//        }
-//        return arr;
-//    }
 }

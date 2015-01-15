@@ -124,10 +124,10 @@ textarea[name="txtMensagem"] {
 }
 
 .list td a {
-    color: #666;
-    text-decoration: none;
+    color: #434343;
+    font-weight: bold;
+    text-decoration: underline;
 }
-
 
 .editCenter {
     height: 26px;

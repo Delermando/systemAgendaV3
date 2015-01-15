@@ -10,17 +10,14 @@ angular.module('api.update', ['ngRoute'])
     }])
 
 .controller('UpdateCard', function ($scope, $http, $routeParams) {
-    $scope.card = {};
     $http.get('http://local.api.com/v1/cards/list/' + $routeParams.idCard).success(function (apiReturn) {
-          if(apiReturn == null){
-             var arrayDate = (apiReturn.data[0].dateToSend).split('-');
+          if(apiReturn.data !== null){
+            var arrayDate = (apiReturn.data[0].dateToSend).split('-');
             $scope.apiData = apiReturn.data[0];
             $scope.apiData['day'] = arrayDate[0];
             $scope.apiData['month'] = arrayDate[1];
             $scope.apiData['year'] = arrayDate[2];
           }      
-                
-
     });
 
     $scope.submitFormUpdate = function (isValid) {

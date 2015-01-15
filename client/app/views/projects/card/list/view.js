@@ -11,6 +11,7 @@ angular.module('api.list', ['ngRoute'])
 
     .controller('ListCards', function ($http, $scope, $routeParams) {
         $scope.apiData = {};
+        $scope.predicate = '';
         $http.get('http://local.api.com/v1/cards/list').success(function (apiReturn) {
             $scope.apiData = pagination(apiReturn.data, 8, $routeParams.pageNumb);
         });
