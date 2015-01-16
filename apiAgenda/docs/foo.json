@@ -1,6 +1,7 @@
 {
-    "basePath": "http://local.api.com",
+    "basePath": "http://localhost:8000",
     "swaggerVersion": "1.2",
+    "apiVersion": "0.1",
     "resourcePath": "/foo",
     "apis": [
         {
@@ -8,7 +9,8 @@
             "operations": [
                 {
                     "method": "GET",
-                    "nickname": "get all cards"
+                    "nickname": "foo",
+                    "type": "FooModel"
                 }
             ]
         }
