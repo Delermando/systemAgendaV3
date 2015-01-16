@@ -1,0 +1,84 @@
+{
+    "basePath": "http://local.api.com",
+    "swaggerVersion": "1.2",
+    "resourcePath": "/v1/cards",
+    "apis": [
+        {
+            "path": "/v1/cards/delete",
+            "operations": [
+                {
+                    "method": "POST",
+                    "nickname": "deleteCard",
+                    "parameters": [
+                        {
+                            "paramType": "body",
+                            "name": "idCard",
+                            "type": "idCard",
+                            "required": true,
+                            "allowMultiple": true,
+                            "description": "ID do card"
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 404,
+                            "message": "null"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/v1/cards/list",
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "listAllCards"
+                }
+            ]
+        },
+        {
+            "path": "/v1/cards/list/{idCard}",
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "searchUnicCard",
+                    "parameters": [
+                        {
+                            "paramType": "path",
+                            "name": "idCard",
+                            "type": "integer",
+                            "required": true,
+                            "allowMultiple": false,
+                            "description": "ID do card",
+                            "defaultValue": 308
+                        }
+                    ],
+                    "responseMessages": [
+                        {
+                            "code": 404,
+                            "message": "null"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "idCard": {
+            "id": "idCard",
+            "required": [
+                "true"
+            ],
+            "properties": {
+                "idCard": {
+                    "description": "Array de ids para deletar",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

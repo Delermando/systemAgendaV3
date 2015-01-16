@@ -1,0 +1,16 @@
+{
+    "basePath": "http://local.api.com",
+    "swaggerVersion": "1.2",
+    "resourcePath": "home",
+    "apis": [
+        {
+            "path": "/",
+            "operations": [
+                {
+                    "method": "GET",
+                    "nickname": "home"
+                }
+            ]
+        }
+    ]
+}

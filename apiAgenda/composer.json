@@ -1,6 +1,8 @@
 {
    "require": {
-	"silex/silex": "~1.1"
+	"silex/silex": "~1.1",
+        "jdesrosiers/silex-swagger-provider": "~1.0",
+        "kbrabrand/silex-swagger-ui": "dev-master"
    },
    "autoload": {
         "psr-0": {
