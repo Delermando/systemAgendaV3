@@ -8,7 +8,7 @@ angular.module('api.save', ['ngRoute'])
     });
 }])
 
-.controller('SaveCard', function ($scope, $http) {
+.controller('SaveCard', function ($scope, $http, cacheManager) {
     $scope.submitForm = function (isValid) {
         if (isValid) {
             var jsonPostVar = {
@@ -23,6 +23,7 @@ angular.module('api.save', ['ngRoute'])
             };
             $http.post('http://local.api.com/v1/cards/save', jsonPostVar).success(function (apiReturn) {
                 $scope.apiResponse = apiReturn.response;
+                cacheManager.remove('list');
             });
         }
     };

@@ -5,8 +5,6 @@ ini_set("log_errors", 1);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use JDesrosiers\Silex\Provider\CorsServiceProvider;
-
 $app = new Silex\Application();
 $app['debug'] = true;
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());

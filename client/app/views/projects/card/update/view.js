@@ -9,7 +9,7 @@ angular.module('api.update', ['ngRoute'])
         });
     }])
 
-.controller('UpdateCard', function ($scope, $http, $routeParams) {
+.controller('UpdateCard', function ($scope, $http, $routeParams, cacheManager) {
     $http.get('http://local.api.com/v1/cards/list/' + $routeParams.idCard).success(function (apiReturn) {
           if(apiReturn.data !== null){
             var arrayDate = (apiReturn.data[0].dateToSend).split('-');
@@ -36,6 +36,7 @@ angular.module('api.update', ['ngRoute'])
 
             $http.post('http://local.api.com/v1/cards/update', jsonPostVar).success(function (apiReturn) {
                 $scope.apiResponse = apiReturn.response;
+                cacheManager.remove('list');
             });
         }
     };

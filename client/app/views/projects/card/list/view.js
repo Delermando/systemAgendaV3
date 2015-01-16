@@ -8,13 +8,14 @@ angular.module('api.list', ['ngRoute'])
             controller: 'ListCards'
         });
     })
-
-    .controller('ListCards', function ($http, $scope, $routeParams) {
+    
+    .factory('cacheManager', function($cacheFactory) {
+        return $cacheFactory('cache');
+     })
+     
+    .controller('ListCards', function ($http, $scope, $routeParams, cacheManager) {        
         $scope.apiData = {};
         $scope.predicate = '';
-        $http.get('http://local.api.com/v1/cards/list').success(function (apiReturn) {
-            $scope.apiData = pagination(apiReturn.data, 8, $routeParams.pageNumb);
-        });
         
         var pagination =  function(arrayJsonObjects, numbOfItensPerPage, actualPage){
             var arrayToDisplay = [];
@@ -30,15 +31,26 @@ angular.module('api.list', ['ngRoute'])
                         arrayToDisplay.push(arrayJsonObjects[i]);
                     }
                 }
+                
                 $scope.obejctToEachPage = {};
+                
                 for(var i = 1; numbOfPages >= i; i++ ){
                     $scope.obejctToEachPage[i] =  i;
                 }
              }
             return arrayToDisplay; 
         }
+        
+        var cache = cacheManager.get('list');
+        if (!cache) {
+            $http.get('http://local.api.com/v1/cards/list').success(function (apiReturn) {
+                $scope.apiData = pagination(apiReturn.data, 8, $routeParams.pageNumb);
+                cacheManager.put('list', apiReturn.data);
+            });
+        } else {
+            $scope.apiData = pagination(cache, 8, $routeParams.pageNumb);
+        }
     })
-    
     
     .controller('CallUpdatePage', function ($scope, $http, $location) { //transforma um service
         $scope.getIdForUpdate = function () {
@@ -46,8 +58,7 @@ angular.module('api.list', ['ngRoute'])
         };
     })
     
-    
-    .controller('DeleteCards', function ($scope, $http) { //transforma um service
+    .controller('DeleteCards', function ($scope, $http, cacheManager) { //transforma um service
         $scope.deleteCards = function () {
             creatArrayWithChekedElements();
             deleteItenOnAPI({idCard: $scope.idsSelected});
@@ -76,22 +87,9 @@ angular.module('api.list', ['ngRoute'])
                     deleteItendFromScope($scope.indexOfElements);
                     $scope.apiResponse = apiReturn.response;
                     $scope.numbOfDeletedItems = apiReturn.data.numbOfDeletedItems;
+                    cacheManager.remove('list');
                 }
             });
         }
 
     });
-
-
-//.service('customHttp', [function(){
-//var customHttp = {};
-//
-//customHttp.get = function (uri, data) {
-//    $http.get(uri, data).success(function (e) {
-//        if (e.response === 'success') {
-//            return e;
-//        } else {
-//            return false;
-//        }
-//    });
-//}
