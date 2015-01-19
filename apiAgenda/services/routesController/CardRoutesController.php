@@ -39,6 +39,6 @@ class CardRoutesController{
     
     private function constructPayload(){
         $request = new Request();
-        $this->payload = (array)json_decode($request->getContent());//true json_decode
+        $this->payload = json_decode($request->getContent(), true);//true json_decode
     }
 }

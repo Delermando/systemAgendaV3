@@ -35,11 +35,24 @@ class Validate {
 
     public function isInt($arrayData, $intKey ) {
         $toTest = $this->setValueToTest($arrayData, $intKey);
-        if (!preg_match('/^[1-9][0-9]*$/', $arrayData[$intKey])) {
+        if (!preg_match('/^[1-9][0-9]*$/', $toTest)) {
             $this->setMessageError('isNotInt',$intKey);
         }
     }
 
+    public function isDate($arrayData, $dateKey) {
+        $toTest = $this->setValueToTest($arrayData, $dateKey);
+        $regexTesteDate = "~^\d{2}-\d{2}-\d{4}$~";
+        $testRegex = filter_var(
+            $toTest,FILTER_VALIDATE_REGEXP,
+            array("options"=>array("regexp"=> $regexTesteDate))
+        );
+        
+        if($testRegex == false){
+            $this->setMessageError('wrongDateFormat', $dateKey);
+        }
+    }
+    
     public function updateReturn($updateReturn) {
         if ($updateReturn === 0) {
             $this->setMessageError('noDiferentDataToUpdate');
@@ -66,19 +79,6 @@ class Validate {
             $this->setMessageError('wrongNumbOfParams', array('expected' => $sizeKeysToCheck));
         } else {
             return true;
-        }
-    }
-    
-    public function isDate($arrayData, $dateKey) {
-        $toTest = $this->setValueToTest($arrayData, $dateKey);
-        $regexTesteDate = "~^\d{2}-\d{2}-\d{4}$~";
-        $testRegex = filter_var(
-            $toTest,FILTER_VALIDATE_REGEXP,
-            array("options"=>array("regexp"=> $regexTesteDate))
-        );
-        
-        if($testRegex == false){
-            $this->setMessageError('wrongDateFormat', $dateKey);
         }
     }
     
