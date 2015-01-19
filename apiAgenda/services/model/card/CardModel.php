@@ -10,7 +10,7 @@ class CardModel {
     private $RelationCard = 'RelationCard';
 
     public function save($arrayToSave) {
-        return $this->saveInAllEntities($arrayToSave);
+        return array('lastIdInserted'=>$this->saveInAllEntities($arrayToSave));
     }
 
     public function delete($IdSchedule) {

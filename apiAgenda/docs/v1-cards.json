@@ -8,7 +8,9 @@
             "operations": [
                 {
                     "method": "POST",
+                    "summary": "Deleta os cartoes por um array de IDs",
                     "nickname": "deleteCard",
+                    "type": "ResponseDelete",
                     "parameters": [
                         {
                             "paramType": "body",
@@ -16,7 +18,7 @@
                             "type": "objectToDelete",
                             "required": true,
                             "allowMultiple": true,
-                            "description": "Object com o ID do card a ser deletado"
+                            "description": "Object/array com os IDs dos cartoes a serem deletados"
                         }
                     ],
                     "responseMessages": [
@@ -37,7 +39,19 @@
             "operations": [
                 {
                     "method": "GET",
-                    "nickname": "listAllCards"
+                    "summary": "Retorna todos os cartoes cadastrados",
+                    "nickname": "listAllCards",
+                    "type": "ResponseList",
+                    "responseMessages": [
+                        {
+                            "code": 0,
+                            "message": "no error"
+                        },
+                        {
+                            "code": 1,
+                            "message": "noRegisters"
+                        }
+                    ]
                 }
             ]
         },
@@ -46,7 +60,9 @@
             "operations": [
                 {
                     "method": "GET",
+                    "summary": "Busca um cartao pelo seu ID",
                     "nickname": "searchUnicCard",
+                    "type": "ResponseUnicCard",
                     "parameters": [
                         {
                             "paramType": "path",
@@ -55,10 +71,14 @@
                             "required": true,
                             "allowMultiple": false,
                             "description": "Object com o ID do card a ser pesquisado",
-                            "defaultValue": 300
+                            "defaultValue": 329
                         }
                     ],
                     "responseMessages": [
+                        {
+                            "code": 0,
+                            "message": "no error"
+                        },
                         {
                             "code": 1,
                             "message": "noRegisters"
@@ -72,7 +92,9 @@
             "operations": [
                 {
                     "method": "POST",
+                    "summary": "Cadastrar cartoes",
                     "nickname": "saveCard",
+                    "type": "ResponseSave",
                     "parameters": [
                         {
                             "paramType": "body",
@@ -80,7 +102,7 @@
                             "type": "objectToSave",
                             "required": true,
                             "allowMultiple": true,
-                            "description": "Objeto/Array com os IDs a serem deletados"
+                            "description": "Objeto/Array com os dados a serem gravados!"
                         }
                     ],
                     "responseMessages": [
@@ -98,22 +120,14 @@
                         },
                         {
                             "code": 3,
-                            "message": "wrongNumbOfParams"
+                            "message": "paramNotSet"
                         },
                         {
                             "code": 4,
-                            "message": "paramNotSet"
-                        },
-                        {
-                            "code": 5,
-                            "message": "paramNotSet"
-                        },
-                        {
-                            "code": 6,
                             "message": "wrongEmailFormat"
                         },
                         {
-                            "code": 7,
+                            "code": 5,
                             "message": "wrongDateFormat"
                         }
                     ]
@@ -125,7 +139,9 @@
             "operations": [
                 {
                     "method": "POST",
+                    "summary": "Atualizar cartoes",
                     "nickname": "updateCard",
+                    "type": "ResponseUpdate",
                     "parameters": [
                         {
                             "paramType": "body",
@@ -151,26 +167,18 @@
                         },
                         {
                             "code": 3,
-                            "message": "wrongNumbOfParams"
+                            "message": "paramNotSet"
                         },
                         {
                             "code": 4,
-                            "message": "paramNotSet"
-                        },
-                        {
-                            "code": 5,
-                            "message": "paramNotSet"
-                        },
-                        {
-                            "code": 6,
                             "message": "wrongEmailFormat"
                         },
                         {
-                            "code": 7,
+                            "code": 5,
                             "message": "wrongDateFormat"
                         },
                         {
-                            "code": 7,
+                            "code": 6,
                             "message": "noRegisters"
                         }
                     ]
@@ -179,6 +187,133 @@
         }
     ],
     "models": {
+        "ResponseList": {
+            "id": "ResponseList",
+            "properties": {
+                "response": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "DataList"
+                    }
+                }
+            }
+        },
+        "DataList": {
+            "id": "DataList",
+            "properties": {
+                "IDScheduleSend": {
+                    "type": "integer"
+                },
+                "IDFromEmail": {
+                    "type": "integer"
+                },
+                "IDToEmail": {
+                    "type": "integer"
+                },
+                "IDMessage": {
+                    "type": "integer"
+                },
+                "emailFromEmail": {
+                    "type": "string"
+                },
+                "nameFromEmail": {
+                    "type": "string"
+                },
+                "emailToEmail": {
+                    "type": "string"
+                },
+                "nameToEmail": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "createDate": {
+                    "type": "string"
+                },
+                "dateToSend": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseUnicCard": {
+            "id": "ResponseUnicCard",
+            "properties": {
+                "response": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "DataUnicCard"
+                    }
+                }
+            }
+        },
+        "DataUnicCard": {
+            "id": "DataUnicCard",
+            "properties": {
+                "IDScheduleSend": {
+                    "type": "integer"
+                },
+                "IDFromEmail": {
+                    "type": "integer"
+                },
+                "IDToEmail": {
+                    "type": "integer"
+                },
+                "IDMessage": {
+                    "type": "integer"
+                },
+                "emailFromEmail": {
+                    "type": "string"
+                },
+                "nameFromEmail": {
+                    "type": "string"
+                },
+                "emailToEmail": {
+                    "type": "string"
+                },
+                "nameToEmail": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "createDate": {
+                    "type": "string"
+                },
+                "dateToSend": {
+                    "type": "string"
+                }
+            }
+        },
+        "ResponseDelete": {
+            "id": "ResponseDelete",
+            "properties": {
+                "response": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "DataDelete"
+                    }
+                }
+            }
+        },
         "objectToDelete": {
             "id": "objectToDelete",
             "required": [
@@ -186,10 +321,34 @@
             ],
             "properties": {
                 "idCard": {
-                    "description": "Array de ids para deletar",
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "$ref": 0
+                    }
+                }
+            }
+        },
+        "DataDelete": {
+            "id": "DataDelete",
+            "properties": {
+                "numbOfDeletedItems": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ResponseSave": {
+            "id": "ResponseSave",
+            "properties": {
+                "response": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "DataSave"
                     }
                 }
             }
@@ -226,6 +385,31 @@
                 }
             }
         },
+        "DataSave": {
+            "id": "DataSave",
+            "properties": {
+                "lastIdInserted": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ResponseUpdate": {
+            "id": "ResponseUpdate",
+            "properties": {
+                "response": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "DataUpdate"
+                    }
+                }
+            }
+        },
         "objectToUpdate": {
             "id": "objectToUpdate",
             "required": [
@@ -259,6 +443,14 @@
                 "date": {
                     "description": "Data para o envio do cartao",
                     "type": "string"
+                }
+            }
+        },
+        "DataUpdate": {
+            "id": "DataUpdate",
+            "properties": {
+                "tableModifiedName": {
+                    "type": "integer"
                 }
             }
         }
